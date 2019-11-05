@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   
   def debt
     @users = Transaction.show_debtor(session[:user_id])
-    @totalall = 0
+    @totalall = 0 // duy: @totalall, calcutate in view
     @users.each do |single|
       @totalall += single.total
     end
@@ -31,7 +31,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.create(transaction_params)
     @transaction.creditorid = session[:user_id]       
-    @transaction.status = 2
+    @transaction.status = 2 // duy: magic number => use constant
 
     if @transaction.save   
       flash[:notice] = 'Product added!'   
