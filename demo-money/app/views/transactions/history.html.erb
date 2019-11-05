@@ -1,0 +1,19 @@
+<ul>
+<% @history.each do |u|    %>
+    <% if u.status == 3 %>
+        <li>
+            <%= link_to  "#{u.fullname} | #{u.amount} $| #{u.datedebt} | #{u.note} | Cancel", "" %> 
+        </li>
+    <%end%>
+    <% if u.status == 4 %>
+        <li>
+            <%= link_to  "#{u.fullname} | #{u.amount} $| #{u.datedebt} | #{u.note} | Finished", "" %> 
+        </li>
+    <%end%>
+    <% if u.status == 5 %>
+        <li>
+            <%= link_to  "#{u.fullname} | #{u.amount} $| #{u.datedebt} | #{u.note} | Delete", "" %> 
+        </li>
+    <%end%>
+<%end%>
+</ul>

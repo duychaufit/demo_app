@@ -1,0 +1,12 @@
+<div class = "left-content">
+    <h2><%= link_to "Total: #{@totalall} $", "" %></h2>
+    <ul>
+        <%  @users.each do |u|    %>
+        <li>
+            <h3>
+                <%= link_to  "#{u.fullname} | #{u.total}$", creditlist_path(u.creditorid) %>
+            </h3>
+        </li>
+        <%end%>
+    </ul>
+</div>

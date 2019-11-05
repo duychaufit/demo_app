@@ -1,0 +1,25 @@
+<div>
+<%= link_to  "Home", debt_path %>
+<%= link_to  "Debtor", debt_transaction_path(id: 1) %>
+<%= link_to  "Creditor", credit_transaction_path(id: 1) %>
+<%= link_to  "History", history_transaction_path(id: 1) %>
+</div>
+
+<%
+=begin%>
+ <div class = "left-content">
+    <h2><%= link_to "Total: #{@totalall} $", "" %></h2>
+    
+    <%= link_to  "+", new_transaction_path %>
+    <ul>
+        <%  @users.each do |u|    %>
+        <li>
+            <h3>
+                <%= link_to  "#{u.fullname} | #{u.total}$", debtlist_transaction_path(u.debtorid) %>
+            </h3>
+        </li>
+        <%end%>
+    </ul>
+</div> 
+<%
+=end%>

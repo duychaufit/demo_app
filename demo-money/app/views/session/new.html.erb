@@ -1,0 +1,16 @@
+<%= form_for :session, url: login_path do |f| %>
+    <div >
+        <label>Email</label>
+        <%= f.text_field :email, placeholder: "Enter your email" %>
+    </div>
+    <div >
+        <label>Password</label>
+        <%= f.password_field :password, placeholder: "Enter your password" %>
+    </div>
+    <div>
+          <%= f.submit "Login" %>
+        </div>
+    <div >
+        <%= link_to "Register", register_path %>
+    </div>
+<% end %>

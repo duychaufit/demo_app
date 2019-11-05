@@ -1,0 +1,30 @@
+<div>   
+  <%= flash[:error]%>  
+  <%= form_for @transaction, url: create_transaction_path do |f| %>   
+    <div>   
+      <h3>Add a transaction</h3>   
+    </div>   
+    <div>   
+      <div>
+          <label>Name</label>   
+          <%= f.select(:debtorid, @listusers.collect {|u| [u.fullname, u.id] }, prompt: "Select ..." ) %>
+      </div>
+      <div>   
+            <label>Amount</label>   
+            <%= f.text_field :amount %>   
+      </div>   
+
+      <div>   
+          <label>Date</label>   
+          <%= f.datetime_field :datedebt %>
+      </div> 
+      <div>   
+          <label>Notes</label>   
+            <%= f.text_field :note %>   
+      </div>   
+      <div>   
+        <%= f.submit %>   
+      </div> 
+    </div>     
+  <% end %>   
+</div>

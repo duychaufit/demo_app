@@ -1,0 +1,14 @@
+<div class = "left-content">
+    <h2><%= link_to "Total: #{@totalall} $", "" %></h2>
+    
+    <%= link_to  "+", new_transaction_path %>
+    <ul>
+        <%  @users.each do |u|    %>
+        <li>
+            <h3>
+                <%= link_to  "#{u.fullname} | #{u.total}$", debtlist_path(u.debtorid) %>
+            </h3>
+        </li>
+        <%end%>
+    </ul>
+</div>
