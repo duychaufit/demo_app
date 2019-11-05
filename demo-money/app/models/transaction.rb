@@ -1,6 +1,9 @@
 class Transaction < ApplicationRecord
 
     # ==Validates================>
+    
+    # duy: miss validate status
+    # duy: status :kind, inclusion: {in: %w(aa bb cc)}
 
     #Debtorid
     validates :debtorid, presence: true, numericality: true
@@ -24,13 +27,13 @@ class Transaction < ApplicationRecord
                     joins('inner join users on users.id = transactions.debtorid')
                     .select('fullname, sum(amount) as total,debtorid')
                     .where(creditorid: session_id)
-                    .getstatus([1, 2])
+                    .getstatus([1, 2]) # duy: magic number => use constant
                     .group(:fullname, :debtorid)
     end
     # ==GET LIST TRANSASTION OF A DEBTOT
     def self.details_debtor(session_id,debtor_id)
         where(creditorid: session_id, debtorid: debtor_id)
-        .getstatus([1, 2])
+        .getstatus([1, 2])# duy: magic number => use constant
         .order("status asc")
     end
     # ==GET LIST CREDITOR
@@ -38,7 +41,7 @@ class Transaction < ApplicationRecord
         joins('inner join users on users.id = transactions.creditorid')
         .select('fullname, sum(amount) as total,creditorid')
         .where(debtorid: session_id)
-        .getstatus([1, 2])
+        .getstatus([1, 2])# duy: magic number => use constant
         .group(:fullname, :creditorid)
     end
     # ==GET LIST TRANSACTION OF A CREDITOR
@@ -52,7 +55,7 @@ class Transaction < ApplicationRecord
         joins('inner join users on users.id = transactions.debtorid')\
         .select('*')
         .where(creditorid: session_id)
-        .getnotstatus([1, 2])
+        .getnotstatus([1, 2])# duy: magic number => use constant
         .order("debtorid, status asc")
     end
 
